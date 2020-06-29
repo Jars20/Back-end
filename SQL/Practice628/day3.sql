@@ -378,6 +378,10 @@ where empno in (select mgr from emp) and sal >
 (select max(a.sal) from emp a 
 where a.empno not in(select mgr from emp where mgr is not null));
 -- 取得每个薪水等级有多少员工
+select temp.g 薪水等级,count(temp.empno) 员工数 
+from (select sg.grade g,e.empno from emp e,salgrade sg 
+where e.sal between sg.losal and sg.hisal)temp
+group by temp.g;
 
 -- 列出受雇日期早于其直接上级领导的所有员工编号，姓名、部门名称
 select empno,ename,deptno from emp a 
@@ -404,15 +408,14 @@ select job,count(*) from emp group by job having min(sal) > 1500;
 
 -- 列出部门在“SALES”<销售部>工作的姓名
 select e.ename,d.* from emp e, dept d
-where e.deptno = d.deptno and d.dname like 'SALES';
+where e.deptno = d.deptno and d.dname = 'SALES';
 
 -- 列出薪金高于公司平均薪金的所有员工、所在的部门、上级领导、雇员的工资等级
-!!select a.ename,b.dname,c.ename mgr_name,d.grade
-from emp a,dept b,emp c,salgrade d
-where a.deptno=b.deptno and
-a.mgr=c.empno and
-a.sal between d.losal and d.hisal
-and a.sal>(select avg(sal) from emp);
+select e1.ename,d.dname,e2.ename,sg.grade from emp e1,emp e2,salgrade sg,dept d
+where e1.sal>(select avg(sal) from emp)
+and e1.sal between sg.losal and sg.hisal
+and e1.mgr=e2.empno
+and e1.deptno=d.deptno;
 
 -- 列出所有与“SCOTT”从事相同工作的所有员工及部门名称
 select e.*,d.dname
