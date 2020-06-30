@@ -1,16 +1,16 @@
-package club.banyuan;
+package club.banyuan.service;
 
-import javax.xml.crypto.dsig.keyinfo.KeyName;
+import club.banyuan.entity.Product;
+import club.banyuan.util.JdbcUtils;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class SelectProducts {
-    public Map<String,Product> products = new HashMap<>();
+    public Map<String, ArrayList<Product>> products = new HashMap<>();
     public void searchSystem (String userName) {
         Scanner sc = new Scanner(System.in);
         System.out.println("请输入要查找的关键字：\n");
@@ -25,7 +25,7 @@ public class SelectProducts {
     }
 
     private void search(String keyName,String userName) throws SQLException {
-        Connection conn =JdbcUtils.getConnection(null);
+        Connection conn = JdbcUtils.getConnection(null);
         String sql = "select * from product where name like ? or description like ?";
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setString(1,"%"+keyName+"%");
@@ -40,7 +40,7 @@ public class SelectProducts {
            product.setPrice(rs.getFloat("price"));
            product.setStock(rs.getInt("stock"));
 
-           products.put(userName,product);
+           products.get(userName).add(product);
         }
 
         JdbcUtils.close(conn,pstmt,rs);

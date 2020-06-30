@@ -1,4 +1,6 @@
-package club.banyuan;
+package club.banyuan.service;
+
+import club.banyuan.util.JdbcUtils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -29,7 +31,7 @@ public class Register {
     }
 
     private static boolean register(String name, String password) throws SQLException {
-        Connection conn =JdbcUtils.getConnection(null);
+        Connection conn = JdbcUtils.getConnection(null);
         String sql = "insert into user (loginName,password) values (?,?)";
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setString(1,name);
@@ -37,7 +39,7 @@ public class Register {
 
         int count = 0;
         count+=pstmt.executeUpdate(sql);
-        if(count==1){
+        if(count>0){
             JdbcUtils.close(conn,pstmt);
             return true;
         }else {

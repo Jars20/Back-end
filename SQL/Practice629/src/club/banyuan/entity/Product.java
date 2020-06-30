@@ -1,4 +1,4 @@
-package club.banyuan;
+package club.banyuan.entity;
 
 public class Product {
     private Integer id;
@@ -6,6 +6,8 @@ public class Product {
     private String description;
     private Float price;
     private Integer stock;
+    private Integer quantity = null;
+
 
     public Integer getId() {
         return id;
@@ -45,6 +47,14 @@ public class Product {
 
     public void setStock(Integer stock) {
         this.stock = stock;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
     @Override
