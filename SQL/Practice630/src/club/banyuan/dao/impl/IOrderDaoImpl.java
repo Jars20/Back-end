@@ -18,7 +18,7 @@ public class IOrderDaoImpl extends BaseDaoImpl implements IOrderDao {
 
     @Override
     public int addOrder(Order order) {
-        String sql = "insert into order(id,userId,loginName,userAddress,createTime,cost) values(null,?,?,?,?,?)";
+        String sql = "insert into `order`(id,userId,loginName,userAddress,createTime,cost) values(null,?,?,?,?,?)";
         Object[] params = new Object[]{
                 order.getUserId(),
                 order.getLoginName(),
@@ -33,18 +33,19 @@ public class IOrderDaoImpl extends BaseDaoImpl implements IOrderDao {
 
     @Override
     public Order show(String loginName) throws SQLException {
-        String sql = "select * from order where loginName = ?";
+        String sql = "select * from `order` where loginName = ?";
         Object[] param = new Object[]{
                 loginName
         };
         ResultSet rs = executeQuery(sql,param);
-        Order order = null;
+        Order order = new Order();
         if (rs.next()){
-            order.setUserId(rs.getInt(1));
-            order.setLoginName(rs.getString(2));
-            order.setUserAddress(rs.getString(3));
-            order.setCreateTime(rs.getDate(4));
-            order.setUserAddress(rs.getString(5));
+            order.setId(rs.getInt(1));
+            order.setUserId(rs.getInt(2));
+            order.setLoginName(rs.getString(3));
+            order.setUserAddress(rs.getString(4));
+            order.setCreateTime(rs.getDate(5));
+            order.setCost(rs.getFloat(6));
         }
         closeResource(rs);
         return order;

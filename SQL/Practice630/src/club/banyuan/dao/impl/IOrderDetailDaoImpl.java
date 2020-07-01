@@ -23,22 +23,24 @@ public class IOrderDetailDaoImpl extends BaseDaoImpl implements IOrderDetailDao 
                 order_detail.getCost()
         };
         int i = executeInsert(sql, params);
+        closeResource();
         return i;//返回主键值
     }
 
     @Override
-    public Order_Detail show(String loginName) throws SQLException {
-        String sql = "select * from order_detail where loginName = ?";
+    public Order_Detail show(int orderId) throws SQLException {
+        String sql = "select * from order_detail where orderId = ?";
         Object[] param = new Object[]{
-                loginName
+                orderId
         };
         ResultSet rs = executeQuery(sql,param);
-        Order_Detail od = null;
+        Order_Detail od = new Order_Detail();
         while(rs.next()){
-            od.setOrderId(rs.getInt(1));
-            od.setProductId(rs.getInt(2));
-            od.setQuantity(rs.getInt(3));
-            od.setCost(rs.getFloat(4));
+            od.setId(rs.getInt(1));
+            od.setOrderId(orderId);
+            od.setProductId(rs.getInt(3));
+            od.setQuantity(rs.getInt(4));
+            od.setCost(rs.getFloat(5));
         }
         closeResource(rs);
         return od;
