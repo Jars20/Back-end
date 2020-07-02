@@ -2,6 +2,7 @@ package club.banyuan.dao.impl;
 
 import club.banyuan.dao.IProductDao;
 import club.banyuan.entity.Product;
+import club.banyuan.entity.User;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -36,6 +37,29 @@ public class IProductDaoImpl extends BaseDaoImpl implements IProductDao {
 
         return productList;
     }
+
+    @Override
+    public Product getProductById(int ProductId) {
+        String sql = "select * from product where id = ?";
+        Object[] params = new Object[]{
+                ProductId};
+        ResultSet rs = executeQuery(sql, params);
+        Product product = null;
+        try {
+            if (rs.next()) {
+                product = new Product(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getFloat(4),
+                        rs.getInt(5),
+                        null);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        closeResource(rs);
+        return product;    }
 
     @Override
     public Object tableToClass(ResultSet rs) throws Exception {

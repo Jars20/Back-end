@@ -4,3 +4,7 @@
 !.gitignore
 !*.java
 !*.pdf
+!*.xml
+!*.html
+!*.jsp
+!*.properties

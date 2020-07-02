@@ -30,11 +30,11 @@ public class Register {
         }
     }
 
-    private static boolean register(String name, String password) throws SQLException {
+    private static boolean register(String loginName, String password) throws SQLException {
         Connection conn = JdbcUtils.getConnection(null);
-        String sql = "insert into user (loginName,password) values (?,?)";
+        String sql = "insert into user (id,loginName,password) values (null,?,?)";
         PreparedStatement pstmt = conn.prepareStatement(sql);
-        pstmt.setString(1,name);
+        pstmt.setString(1,loginName);
         pstmt.setString(2,password);
 
         int count = 0;

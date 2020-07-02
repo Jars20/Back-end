@@ -9,4 +9,5 @@ import java.util.Map;
 
 public interface IProductDao extends IBaseDao {
     public List<Product> show(String Keyword) throws SQLException;
+    public Product getProductById (int ProductId);
 }
