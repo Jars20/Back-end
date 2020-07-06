@@ -27,8 +27,9 @@ public class AddServlet extends HttpServlet {
 
         boolean flag = false;
         try {
+            int id = 0;
             IUserDao iUserDao = new UserDaoImpl(JdbcUtils.getConnection());
-            int id = iUserDao.add(user);
+            id = iUserDao.add(user);
             if (id > 0) {
                 flag = true;
             }
@@ -36,16 +37,32 @@ public class AddServlet extends HttpServlet {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        response.setCharacterEncoding("utf-8");
-        PrintWriter writer = response.getWriter();
-        writer.println("<html>");
-        writer.println("<meta charset ='utf-8'>");
-        writer.println(flag==true?"成功":"失败");
-        writer.println("</body>");
-        writer.println("</html>");
 
-        writer.flush();
-        writer.close();
+
+
+//        response.sendRedirect("success.html");
+
+//        用responseIO流输出
+//        response.setCharacterEncoding("utf-8");
+//        PrintWriter writer = response.getWriter();
+//        writer.println("<html>");
+//        writer.println("<meta charset ='utf-8'>");
+//        writer.println(flag==true?"成功":"失败");
+//        writer.println("</body>");
+//        writer.println("</html>");
+//
+//        writer.flush();
+//        writer.close();
+
+
+        if (flag){
+            request.getRequestDispatcher("success.html");
+//            response.sendRedirect("success.html");
+        }else {
+            response.sendRedirect("fail.html");
+
+        }
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

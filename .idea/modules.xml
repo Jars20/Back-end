@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/JavaEE.iml" filepath="$PROJECT_DIR$/.idea/JavaEE.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SQL/Practice629/Practice629.iml" filepath="$PROJECT_DIR$/SQL/Practice629/Practice629.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SQL/Practice630/Practice630.iml" filepath="$PROJECT_DIR$/SQL/Practice630/Practice630.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JavaWeb/Practice701/Practice701.iml" filepath="$PROJECT_DIR$/JavaWeb/Practice701/Practice701.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JavaWeb/Practice702/Practice702.iml" filepath="$PROJECT_DIR$/JavaWeb/Practice702/Practice702.iml" />
+    </modules>
+  </component>
+</project>
