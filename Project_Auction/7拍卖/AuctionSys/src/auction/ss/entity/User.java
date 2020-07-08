@@ -8,7 +8,6 @@ package auction.ss.entity;
 public class User {
     private Integer id;
     private String loginName;
-    private String userName;
     private String password;
     private String IdNum;
     private String tel;
@@ -18,10 +17,9 @@ public class User {
     public User() {
     }
 
-    public User(Integer id, String loginName, String userName, String password, String idNum, String tel, String address,Integer postNum) {
+    public User(Integer id, String loginName, String password, String idNum, String tel, String address,Integer postNum) {
         this.id = id;
         this.loginName = loginName;
-        this.userName = userName;
         this.password = password;
         IdNum = idNum;
         this.tel = tel;
@@ -45,13 +43,6 @@ public class User {
         this.loginName = loginName;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
 
     public String getPassword() {
         return password;

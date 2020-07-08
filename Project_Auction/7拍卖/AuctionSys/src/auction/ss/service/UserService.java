@@ -10,6 +10,6 @@ import java.sql.SQLException;
  * 描述信息：
  */
 public interface UserService {
-    int register(String loginName,String userName,String password,String idNum,String tel,String address,Integer postNum) throws SQLException;
+    int register(String loginName,String password,String idNum,String tel,String address,Integer postNum) throws SQLException;
     User loginName(String loginName,String password) throws SQLException;
 }

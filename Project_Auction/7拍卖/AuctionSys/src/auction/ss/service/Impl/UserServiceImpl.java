@@ -15,8 +15,8 @@ import java.sql.SQLException;
  */
 public class UserServiceImpl implements UserService {
     @Override
-    public int register(String loginName, String userName, String password, String idNum, String tel, String address, Integer postNum) throws SQLException {
-        User user = new User(null,loginName,userName,password,idNum,tel,address,postNum);
+    public int register(String loginName,String password, String idNum, String tel, String address, Integer postNum) throws SQLException {
+        User user = new User(null,loginName,password,idNum,tel,address,postNum);
         IUserDao userDao = new UserDaoImpl(JdbcUtils.getConnection());
         return userDao.register(user);
     }

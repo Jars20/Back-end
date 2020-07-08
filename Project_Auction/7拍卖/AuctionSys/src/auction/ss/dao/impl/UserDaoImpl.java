@@ -19,10 +19,9 @@ public class UserDaoImpl extends BaseDaoImpl implements IUserDao {
 
     @Override
     public int register(User user) {
-        String sql="insert into user(id,loginName,userName,password,idNum,tel,address,postNUm) values(null,?,?,?,?,?,?,?)";
+        String sql="insert into User(id,loginName,password,idNum,tel,address,postNUm) values(null,?,?,?,?,?,?)";
         int i = executeInsert(sql,new Object[]{
                 user.getLoginName(),
-                user.getUserName(),
                 user.getPassword(),
                 user.getIdNum(),
                 user.getTel(),user.getAddress(),
@@ -48,7 +47,7 @@ public class UserDaoImpl extends BaseDaoImpl implements IUserDao {
 
     @Override
     public User tableToClass(ResultSet rs) throws Exception {
-        User user= new User(rs.getInt("id"),rs.getString("loginName"),rs.getString("userName"),rs.getString("password"),rs.getString("idNum"),rs.getString("tel"),rs.getString("address"),rs.getInt("postNum"));
+        User user= new User(rs.getInt("id"),rs.getString("loginName"),rs.getString("password"),rs.getString("idNum"),rs.getString("tel"),rs.getString("address"),rs.getInt("postNum"));
         if(rs.getString("postNum")!=null){
             user.setPostNum(rs.getInt("postNum"));
         }

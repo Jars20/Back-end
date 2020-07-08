@@ -1,11 +1,17 @@
 package auction.ss.controller;
 
+import auction.ss.entity.Adminster;
+import auction.ss.service.AdminService;
+import auction.ss.service.Impl.AdminServiceImpl;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * @author WM
@@ -18,8 +24,20 @@ public class AdminLoginServlet extends HttpServlet {
         String loginName = request.getParameter("loginName");
         String password = request.getParameter("password");
 
-        
+        AdminService adminService = new AdminServiceImpl();
+        try {
+            Adminster adminster = adminService.loginAdmin(loginName,password);
+            if(adminster!=null){
+                HttpSession session = request.getSession();
 
+                session.setAttribute("admin",adminster);
+                //TODO:登陆成功，跳转管理员界面
+                return;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        //TODO:返回登录界面
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
