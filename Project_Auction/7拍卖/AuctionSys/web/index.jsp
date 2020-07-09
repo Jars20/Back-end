@@ -21,6 +21,12 @@
   }
 </script>
 <body>
+<%
+  String message = (String) request.getAttribute("message");
+  if("pwdError".equals(message)){
+    out.print("<script> alert(\"用户名或密码错误\"); </script>\n");
+  }
+%>
 <div class="wrap">
   <!-- main begin-->
   <div class="main">
@@ -32,16 +38,16 @@
         <div class="login">
           <dl>
             <dt class="blues">用户登陆</dt>
-            <dd><label for="name">用户名：</label><input type="text" class="inputh" value="常用邮箱" id="name"/></dd>
-            <dd><label for="password">密 码：</label><input type="text" class="inputh" value="密码" id="password"/></dd>
+            <dd><label for="name">用户名：</label><input type="text" class="inputh" placeholder="常用邮箱" id="name" name="loginName"/></dd>
+            <dd><label for="password">密 码：</label><input type="password" class="inputh" placeholder="密码" id="password" name="password"/></dd>
             <dd>
               <label class="lf" for="passwords">验证码：</label>
-              <input type="text" class="inputh inputs lf" value="验证码" id="passwords"/>
+              <input type="text" class="inputh inputs lf" placeholder="验证码" id="passwords"/>
               <span class="wordp lf"><img src="images/img2.jpg" width="96" height="27" alt="" /></span>
               <span class="blues lf"><a href="" title="">看不清</a></span>
             </dd>
             <dd>
-              <input name=""  type="checkbox" id="rem_u"  />
+              <input name="rem_me"  type="checkbox" id="rem_u"  value="rem_me"/>
               <span for="rem_u">下次自动登录</span>
             </dd>
             <dd class="buttom">

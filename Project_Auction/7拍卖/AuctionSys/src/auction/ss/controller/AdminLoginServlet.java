@@ -20,7 +20,9 @@ import java.sql.SQLException;
  */
 @WebServlet(name = "AdminLoginServlet",urlPatterns = "/AdminLogin.do")
 public class AdminLoginServlet extends HttpServlet {
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         String loginName = request.getParameter("loginName");
         String password = request.getParameter("password");
 
@@ -31,13 +33,16 @@ public class AdminLoginServlet extends HttpServlet {
                 HttpSession session = request.getSession();
 
                 session.setAttribute("admin",adminster);
-                //TODO:登陆成功，跳转管理员界面
+                //登陆成功，跳转管理员界面
+                request.getRequestDispatcher("Auction_Admin.jsp").forward(request,response);
                 return;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        //TODO:返回登录界面
+        //返回登录界面
+        request.setAttribute("message","pwdError");
+        request.getRequestDispatcher("AdminLogin.jsp").forward(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

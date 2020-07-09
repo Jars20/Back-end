@@ -30,9 +30,7 @@ public class UserRegisterServlet extends HttpServlet {
                 addressTemp = null;
             }
             if(!request.getParameter("postNum").isEmpty()){
-
-            }else {
-
+                postNum = Integer.parseInt(request.getParameter("postNum"));
             }
             flag =userService.register(
                     request.getParameter("loginName"),
@@ -40,8 +38,7 @@ public class UserRegisterServlet extends HttpServlet {
                     request.getParameter("idNum"),
                     request.getParameter("tel"),
                     addressTemp,
-                    postNum
-            );
+                    postNum);
 
         } catch (SQLException e) {
             e.printStackTrace();

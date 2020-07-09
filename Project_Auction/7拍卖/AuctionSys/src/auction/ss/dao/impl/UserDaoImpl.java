@@ -47,10 +47,14 @@ public class UserDaoImpl extends BaseDaoImpl implements IUserDao {
 
     @Override
     public User tableToClass(ResultSet rs) throws Exception {
-        User user= new User(rs.getInt("id"),rs.getString("loginName"),rs.getString("password"),rs.getString("idNum"),rs.getString("tel"),rs.getString("address"),rs.getInt("postNum"));
-        if(rs.getString("postNum")!=null){
+        User user= new User(rs.getInt("id"),rs.getString("loginName"),rs.getString("password"),rs.getString("idNum"),rs.getString("tel"),null, null);
+        if(rs.getInt("postNum")!=0){
             user.setPostNum(rs.getInt("postNum"));
         }
+        if(rs.getString("address")!=null){
+            user.setPostNum(rs.getInt("address"));
+        }
+
         return user;
     }
 }

@@ -24,14 +24,17 @@ import java.sql.SQLException;
 @WebServlet(name = "UserLoginServlet",urlPatterns = "/userLogin.do")
 public class UserLoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("进入UserLogin判断");
+        request.setCharacterEncoding("UTF-8");
         String loginName = request.getParameter("loginName");
         String password = request.getParameter("password");
         String remember =request.getParameter("rem_me");
-
+        System.out.println(loginName+" "+password+" "+remember);
         UserService userService = new UserServiceImpl();
         try {
             User user = userService.loginName(loginName,password);
             if(user!=null){
+                System.out.println("登陆成功");
                 HttpSession session = request.getSession();
 
                 session.setAttribute("user",user);
@@ -39,13 +42,14 @@ public class UserLoginServlet extends HttpServlet {
                 if(remember!=null){
                     request.getRequestDispatcher("cookie.do").forward(request,response);
                 }
-                request.getRequestDispatcher("Auction_User.html").forward(request,response);
+                request.getRequestDispatcher("Auction_User.jsp").forward(request,response);
                 return;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         //返回登录界面
+        request.setAttribute("message","pwdError");
         request.getRequestDispatcher("index.jsp").forward(request,response);
     }
 

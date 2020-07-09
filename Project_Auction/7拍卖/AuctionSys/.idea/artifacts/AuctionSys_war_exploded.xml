@@ -7,6 +7,10 @@
         <element id="directory" name="classes">
           <element id="module-output" name="AuctionSys" />
         </element>
+        <element id="directory" name="lib">
+          <element id="file-copy" path="$PROJECT_DIR$/../../Download/mysql-connector-java-8.0.20.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../Download/jstl-1.2.jar" />
+        </element>
       </element>
     </root>
   </artifact>

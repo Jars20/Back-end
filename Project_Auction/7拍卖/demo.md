@@ -10,16 +10,25 @@
     - LoginName
     - Username
     - pwd
+    - IdNum
+    - tel
+    - Address
+    - PostNum
 - 商品
     - ID
     - lowPrice
     - basePrice
+    - startTime
+    - finalTime
     - highPriceTemp
-    - SoldOrNot
+    - onsell
+    - soldOrNot
 - 出价记录
     - UserId
     - ProductId
     - Price
-
 - 成交表
-    - 
+    - UserId
+    - ProductId
+    - FinalPrice
+

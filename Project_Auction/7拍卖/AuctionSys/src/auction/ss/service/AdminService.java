@@ -11,4 +11,5 @@ import java.sql.SQLException;
  */
 public interface AdminService {
     Adminster loginAdmin (String loginName,String pasword) throws SQLException;
+
 }
