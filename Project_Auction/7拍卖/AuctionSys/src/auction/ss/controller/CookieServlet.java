@@ -16,7 +16,7 @@ public class CookieServlet extends HttpServlet {
         cookie.setMaxAge(600);
         response.addCookie(cookie);
         System.out.println("cookies创建完毕");
-        request.getRequestDispatcher("Auction_User.jsp").forward(request,response);
+        request.getRequestDispatcher("search_product.do").forward(request,response);
 
     }
 

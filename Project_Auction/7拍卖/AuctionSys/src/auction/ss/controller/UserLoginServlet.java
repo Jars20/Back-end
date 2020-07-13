@@ -38,11 +38,12 @@ public class UserLoginServlet extends HttpServlet {
                 HttpSession session = request.getSession();
 
                 session.setAttribute("user",user);
-                // 登陆成功，跳转拍卖界面
+                session.setAttribute("id_1","User");
                 if(remember!=null){
                     request.getRequestDispatcher("cookie.do").forward(request,response);
                 }
-                request.getRequestDispatcher("Auction_User.jsp").forward(request,response);
+                // 登陆成功，跳转拍卖界面
+                request.getRequestDispatcher("search_product.do").forward(request,response);
                 return;
             }
         } catch (SQLException e) {

@@ -26,6 +26,7 @@ public class AdminLoginServlet extends HttpServlet {
         String loginName = request.getParameter("loginName");
         String password = request.getParameter("password");
 
+        System.out.println("Admin"+loginName+password);
         AdminService adminService = new AdminServiceImpl();
         try {
             Adminster adminster = adminService.loginAdmin(loginName,password);
@@ -33,8 +34,9 @@ public class AdminLoginServlet extends HttpServlet {
                 HttpSession session = request.getSession();
 
                 session.setAttribute("admin",adminster);
-                //登陆成功，跳转管理员界面
-                request.getRequestDispatcher("Auction_Admin.jsp").forward(request,response);
+                //登陆成功，跳转管理员界面,id_1用来标记登录的身份
+                session.setAttribute("id_1","Administer");
+                request.getRequestDispatcher("search_product.do").forward(request,response);
                 return;
             }
         } catch (SQLException e) {
