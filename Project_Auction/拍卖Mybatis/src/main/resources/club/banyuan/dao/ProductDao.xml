@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="club.banyuan.dao.IProductDao">
+    <insert id="addProduct" parameterType="Product">
+        insert into Product values(null,#{name},#{description},#{lowPrice},#{basePrice},#{startTime},#{finalTime},1,0)
+    </insert>
+    <update id="deleteProduct" parameterType="int">
+        delete from Product where id = #{id}
+    </update>
+    <update id="sellProduct" parameterType="int">
+        update Product set onSell=0,soldOrNot=1 where id =#{id}
+    </update>
+    <update id="passProduct" parameterType="int">
+        update Product set onSell=0,soldOrNot=0 where id =#{id}
+    </update>
+    <update id="renewProduct" parameterType="Product">
+        update Product set name=#{name},description =#{description},lowPrice =#{lowPrice},basePrice =#{basePrice},startTime=#{startTime},finalTime =#{finalTime} where id=#{id}
+    </update>
+    <select id="selectById" parameterType="int" resultType="Product">
+        select * from Product where id=#{id}
+    </select>
+
+    <select id="showProduct" parameterType="Product" resultType="Product">
+        select * from Product
+        <where>
+            <if test="name!='' and name!=null">
+                and name = #{name}
+            </if>
+            <if test="description!='' and description!=null">
+                and description = #{description}
+            </if><if test="startTime!='' and startTime!=null">
+                and startTime = #{startTime}
+            </if>
+            <if test="finalTime!='' and finalTime!=null ">
+                and finalTime = #{finalTime}
+            </if>
+            <if test="basePrice!='' and basePrice!=null">
+                and basePrice = #{basePrice}
+            </if>
+        </where>
+    </select>
+</mapper>
