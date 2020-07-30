@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="MQ3-fanout-provider" />
+        <module name="MQ2-topic-provider" />
+        <module name="MQ4-durable-direct-consumer" />
+        <module name="MQ4-direct-provider" />
+        <module name="MQ1" />
+        <module name="MQ3-fanout-consumer" />
+        <module name="MQ4-durable-direct-provider" />
+        <module name="MQ2-topic-consumer" />
+        <module name="MQ4-direct-consumer" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="MQ1" options="-parameters" />
+      <module name="MQ2-topic-consumer" options="-parameters" />
+      <module name="MQ2-topic-provider" options="-parameters" />
+      <module name="MQ3-fanout-consumer" options="-parameters" />
+      <module name="MQ3-fanout-provider" options="-parameters" />
+      <module name="MQ4-direct-consumer" options="-parameters" />
+      <module name="MQ4-direct-provider" options="-parameters" />
+      <module name="MQ4-durable-direct-consumer" options="-parameters" />
+      <module name="MQ4-durable-direct-provider" options="-parameters" />
+    </option>
+  </component>
+</project>
