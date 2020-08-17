@@ -17,4 +17,10 @@ value：用于获取数据的 key。key 可以是 POJO 的属性名称，也可�
 # 拦截器Interceptor
 - 仅适用于Controller的拦截
 
+# @PathVariable 
+@PathVariable映射 URL 绑定的占位符
+- 带占位符的 URL 是 Spring3.0 新增的功能，该功能在SpringMVC 向 REST 目标挺进发展过程中具有里程碑的意义
+- 通过 @PathVariable 可以将 URL 中占位符参数绑定到控制器处理方法的入参中：URL 中的 {xxx} 占位符可以通过@PathVariable(“xxx“) 绑定到操作方法的入参中。
+- 主要是根据请求方法进行类的区别
+
 # 

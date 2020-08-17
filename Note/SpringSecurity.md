@@ -50,3 +50,11 @@ http.remreberMe();//cookie默认保存两周
 http.rememberMe().rememberMeParameter("remrember1");
 ```
 
+## Question:
+
+- WebSecurityConfig
+两个config方法，httpsecurity入参的表示拦截，WebSecurity表示白名单
+LoginService逻辑
+- Spring自动完成。return一个继承userdetails接口的实体类DTO
+MyPasswordEncoder 何时调用
+- Component自动调用
